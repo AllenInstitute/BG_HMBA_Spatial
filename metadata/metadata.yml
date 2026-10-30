@@ -1,0 +1,19 @@
+metadata_version: 1
+name: BG_HMBA_Spatial
+description: |-
+  This repository contains analysis and figure generation code supporting the publication:
+
+  >Hewitt, Turner, ... Close, Long, Seeman, et al., Spatial transcriptomics reveals molecular organization of human and nonhuman primate basal ganglia, Cell (2026), https://doi.org/10.1016/j.cell.2026.10.023.
+
+  This publication is part of a wider Human and Mammalian Brain Atlas (HMBA) effort within the NIH BRAIN Initiative Cell Atlas Network (BICAN) consortium. It is part of a Cell Press publication package describing the scientific findings associated with the inaugural HMBA data release covering the Basal Ganglia.
+tags:
+- spatial transcriptomics
+- basal ganglia
+- human
+- marmoset
+- macaque
+authors:
+- name: Meghan Turner
+- name: Madeleine Hewitt
+- name: Stephanie Seeman
+- name: Brian Long
