@@ -5,5 +5,62 @@
 		"registry_host_arg": true,
 		"git_ask_pass": true,
 		"mount_secrets": true
+	},
+	"installers": {
+		"conda": {
+			"packages": [
+				{
+					"name": "ipykernel"
+				},
+				{
+					"name": "ipywidgets"
+				},
+				{
+					"name": "jupyterlab"
+				},
+				{
+					"name": "notebook"
+				},
+				{
+					"name": "pyyaml"
+				}
+			]
+		},
+		"pip": {
+			"packages": [
+				{
+					"name": "cmap"
+				},
+				{
+					"name": "colorcet"
+				},
+				{
+					"name": "git+https://github.com/AllenInstitute/code-ocean-utils-mnh.git@88043fd69776c1da858c5ef2e85875283ebf82de#egg=code-ocean-utils-mnh"
+				},
+				{
+					"name": "git+https://github.com/AllenInstitute/spatial_compare.git@b638b2e5835c35dc1aa3a4653f6a428d270d97df#egg=spatial-compare"
+				},
+				{
+					"name": "git+https://github.com/AllenInstitute/spots-in-space.git@485fd05a6f58d32f8c881ee99d0460ddb1ecccc1#egg=spots-in-space"
+				},
+				{
+					"name": "nibabel"
+				},
+				{
+					"name": "opencv-python-headless"
+				},
+				{
+					"name": "plotly"
+				},
+				{
+					"name": "scikit-misc"
+				},
+				{
+					"name": "xarray"
+				}
+			],
+			"options": {},
+			"pre_install_options": {}
+		}
 	}
 }
