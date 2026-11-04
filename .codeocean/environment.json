@@ -7,32 +7,15 @@
 		"mount_secrets": true
 	},
 	"installers": {
-		"conda": {
-			"packages": [
-				{
-					"name": "ipykernel"
-				},
-				{
-					"name": "ipywidgets"
-				},
-				{
-					"name": "jupyterlab"
-				},
-				{
-					"name": "notebook"
-				},
-				{
-					"name": "pyyaml"
-				}
-			]
-		},
 		"pip": {
 			"packages": [
 				{
-					"name": "cmap"
+					"name": "cmap",
+					"version": "0.8.0"
 				},
 				{
-					"name": "colorcet"
+					"name": "colorcet",
+					"version": "3.2.1"
 				},
 				{
 					"name": "git+https://github.com/AllenInstitute/code-ocean-utils-mnh.git@88043fd69776c1da858c5ef2e85875283ebf82de#egg=code-ocean-utils-mnh"
@@ -44,19 +27,28 @@
 					"name": "git+https://github.com/AllenInstitute/spots-in-space.git@485fd05a6f58d32f8c881ee99d0460ddb1ecccc1#egg=spots-in-space"
 				},
 				{
-					"name": "nibabel"
+					"name": "nibabel",
+					"version": "5.4.2"
 				},
 				{
-					"name": "opencv-python-headless"
+					"name": "opencv-python-headless",
+					"version": "5.0.0.93"
 				},
 				{
-					"name": "plotly"
+					"name": "plotly",
+					"version": "7.1.0"
 				},
 				{
-					"name": "scikit-misc"
+					"name": "scikit-misc",
+					"version": "0.5.3"
 				},
 				{
-					"name": "xarray"
+					"name": "spatialdata[extra]",
+					"version": "0.8.0"
+				},
+				{
+					"name": "xarray",
+					"version": "2026.9.0"
 				}
 			],
 			"options": {},
