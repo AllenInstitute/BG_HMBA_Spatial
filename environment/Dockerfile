@@ -1,10 +1,19 @@
-# hash:sha256:b43a0c01f1a86da33c1b0955c0bda11a80f62b220c99f98d1c865f56223e15b4
+# hash:sha256:c61f873a92889d65668879c520edd1d8352118d9590a763b2af9c6d0d6208d07
 ARG REGISTRY_HOST
 FROM $REGISTRY_HOST/codeocean/code-server-python-extensions-pack:code-server4.129.0python3.12.4codeocean-mcp-serveruvpyreflyetc
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG GIT_ASKPASS
 COPY git-ask-pass /
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ttf-mscorefonts-installer=3.8ubuntu2 \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN conda install -y \
+        mscorefonts==0.0.1 \
+    && conda clean -ya
 
 RUN --mount=type=secret,id=git-access-token \
     GIT_ACCESS_TOKEN="$(cat /run/secrets/git-access-token)" \
