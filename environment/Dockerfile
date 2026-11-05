@@ -1,4 +1,4 @@
-# hash:sha256:c61f873a92889d65668879c520edd1d8352118d9590a763b2af9c6d0d6208d07
+# hash:sha256:da272113de815f60d18fb201d65910b890834621fd66dcf7d859f00fed0b0314
 ARG REGISTRY_HOST
 FROM $REGISTRY_HOST/codeocean/code-server-python-extensions-pack:code-server4.129.0python3.12.4codeocean-mcp-serveruvpyreflyetc
 
@@ -18,10 +18,12 @@ RUN conda install -y \
 RUN --mount=type=secret,id=git-access-token \
     GIT_ACCESS_TOKEN="$(cat /run/secrets/git-access-token)" \
     pip install -U --no-cache-dir \
+    anndata==0.13.4 \
     cmap==0.8.0 \
     colorcet==3.2.1 \
     nibabel==5.4.2 \
     opencv-python-headless==5.0.0.93 \
+    pandas==3.1.1 \
     plotly==7.1.0 \
     scikit-misc==0.5.3 \
     spatialdata[extra]==0.8.0 \
