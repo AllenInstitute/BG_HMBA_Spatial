@@ -2,6 +2,30 @@
 	"version": 1,
 	"attached_datasets": [
 		{
+			"id": "269ac2ba-7a3b-47ee-acb8-e2ded4925689",
+			"mount": "mfishmerscopemacaqueatlas"
+		},
+		{
+			"id": "31d7f9fc-fa2a-4cd8-9495-83865ff18111",
+			"mount": "mac_merscope_segmented_data"
+		},
+		{
+			"id": "546d41a6-5a61-47e4-819d-061efd4e70d3",
+			"mount": "mac_merscope_barcodes"
+		},
+		{
+			"id": "5c4d72d8-c3e2-409f-9d18-bf9e1dad064d",
+			"mount": "for_mike"
+		},
+		{
+			"id": "9d4973d2-f71c-4f46-a2fc-c6046e388e45",
+			"mount": "mac_merscope_mapping_output"
+		},
+		{
+			"id": "db2a86ea-1734-41da-8000-35fbb557200a",
+			"mount": "BG_annotation_sheet"
+		},
+		{
 			"id": "e45a337c-ec8d-4f0e-9776-c89f9cbd0571",
 			"mount": "SPNs_with_PCA_batch_log1p"
 		}
