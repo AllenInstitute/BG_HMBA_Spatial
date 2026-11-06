@@ -1,4 +1,4 @@
-# hash:sha256:faac9f21a67de35fc18573ad427cfda3862cfcba53271e19b052644c4b32114c
+# hash:sha256:637aee121e42df440ed66142f0733ad0d9de3ecd486c1b046ac7050c8d1b836f
 ARG REGISTRY_HOST
 FROM $REGISTRY_HOST/codeocean/code-server-python-extensions-pack:code-server4.129.0python3.12.4codeocean-mcp-serveruvpyreflyetc
 
@@ -26,7 +26,7 @@ RUN --mount=type=secret,id=git-access-token \
     pandas==2.3.3 \
     plotly==7.1.0 \
     scikit-misc==0.5.3 \
-    spatialdata[extra]==0.8.0 \
+    spatialdata[extra]==0.7.3 \
     xarray==2026.9.0 \
     -e git+https://github.com/AllenInstitute/code-ocean-utils-mnh.git@88043fd69776c1da858c5ef2e85875283ebf82de#egg=code-ocean-utils-mnh \
     -e git+https://github.com/AllenInstitute/spatial_compare.git@b638b2e5835c35dc1aa3a4653f6a428d270d97df#egg=spatial-compare \
