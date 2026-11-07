@@ -179,17 +179,6 @@ def cache_and_load_xenium_zarr(barcode_to_test, xenium_dir):
     sdata = sd.read_zarr(zarr_path)
     return sdata
 
-def add_fonts_to_manager():
-    # locate current conda environment's font folder
-    conda_env_path = os.environ.get("CONDA_PREFIX")
-    if conda_env_path:
-        conda_font_dir = os.path.join(conda_env_path, "fonts")
-        
-        # find and register every TTF file in that directory
-        if os.path.exists(conda_font_dir):
-            for font in font_manager.findSystemFonts(fontpaths=[conda_font_dir], fontext='ttf'):
-                font_manager.fontManager.addfont(font)
-
 # reproduce midline rotation
 # I might've copied from the bg spatial plots repo
 def rotate_marmoset_section(

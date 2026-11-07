@@ -1,3 +1,5 @@
+import os
+
 import matplotlib.pyplot as plt
 from matplotlib.lines import Line2D
 import matplotlib.patches as patches
@@ -8,6 +10,7 @@ import bg_spatial_plots.color_utils as cutils
 import numpy as np
 import shapely
 from shapely.plotting import plot_polygon
+from matplotlib import font_manager
 
 def add_scalebar(
     ax, 
@@ -231,3 +234,22 @@ def highlight_clusters_cmap(all_clusters, select_clusters, colors, default_color
             cluster_cmap.update({cluster: default_color})
     
     return cluster_cmap
+
+def add_fonts_to_manager():
+    # locate current conda environment's font folder
+    conda_env_path = os.environ.get("CONDA_PREFIX")
+    if conda_env_path:
+        conda_font_dir = os.path.join(conda_env_path, "fonts")
+        
+        # find and register every TTF file in that directory
+        if os.path.exists(conda_font_dir):
+            for font in font_manager.findSystemFonts(fontpaths=[conda_font_dir], fontext='ttf'):
+                font_manager.fontManager.addfont(font)
+
+    plt.rcParams['font.family'] = 'Arial'
+    plt.rcParams['font.sans-serif'] = ['Arial']
+    # embed as TrueType (not Type 3) so font is actual editable text, 
+    # not paths/outlines, in vector formats
+    plt.rcParams['pdf.fonttype'] = 42   
+    plt.rcParams['ps.fonttype'] = 42
+    plt.rcParams['svg.fonttype'] = 'none'
