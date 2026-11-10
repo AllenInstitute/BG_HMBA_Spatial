@@ -704,3 +704,26 @@ def add_region_colormap(obs, groups, ax, width='100%', height='5%', pad=0):
     cax.set_xticks([])
     cax.set_yticks([])
     cax.axis("off")
+
+def plot_spatial_gene_expression(adata, gene, xcol_name, ycol_name, zcol_name, zcol_val, ax, layer=None, sort_values=True, use_seaborn=True, **kwargs):
+    """Plot gene expression for a single section in space."""
+    if not zcol_name:
+        subset = adata.copy()
+    else:
+        subset = adata[adata.obs[f'{zcol_name}'] == zcol_val].copy()
+
+    if gene in adata.obs.columns:
+        subset.obs['gene_color'] = subset.obs[gene]
+    else:
+        subset.obs['gene_color'] = subset.obs_vector(gene, layer=layer)
+    if sort_values:
+        # plot highest values on top
+        subset.obs.sort_values('gene_color', inplace=True)
+    if use_seaborn:
+        # included for backwards compatibility
+        g = sns.scatterplot(subset.obs, x=xcol_name, y=ycol_name, hue=subset.obs['gene_color'], ax=ax, **kwargs)
+    else:
+        g = ax.scatter(subset.obs[xcol_name], subset.obs[ycol_name], c=subset.obs['gene_color'], **kwargs)
+
+    ax.set_aspect('equal')
+    return g

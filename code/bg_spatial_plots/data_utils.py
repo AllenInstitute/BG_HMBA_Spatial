@@ -11,6 +11,13 @@ import warnings
 import seaborn as sns 
 from bg_spatial_plots.coordinate_transforms import add_aligned_rotated_coords_marmoset
 
+NEURON_NEIGHBORHOODS = [
+    'Adjacent',
+    'Subpallium GABA',
+    'Subpallium GABA-Glut',
+    'Glut Sero Dopa'
+]
+
 def load_anndata_obs(
     ad_filepath,
     data_structure='obs', 

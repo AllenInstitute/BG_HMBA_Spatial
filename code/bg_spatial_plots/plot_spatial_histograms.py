@@ -475,3 +475,75 @@ def make_2D_hist_enrichment_log2(
     ax.axis('off')
 
     return ax
+
+def plot_radial_summary(
+    obs,
+    z_plane,
+    x,
+    y,
+    label_key,
+    label_center,
+    label_ring,
+    ax,
+    z_column='z_order',
+    bin_size=50,
+    cmap='coolwarm',
+    center_coord=None,
+):
+    """
+    Plot radial contrast (ring fraction - center fraction) of two labels
+    for a given z-plane onto the provided axes.
+
+    Returns
+    -------
+    ax : Axes
+    """
+    # --- Data preparation ---
+    data_slice = obs[obs[z_column] == z_plane]
+    coords = data_slice[[x, y]].values
+    labels = data_slice[label_key].astype(str).values
+
+    is_center = labels == label_center
+    is_target = is_center | (labels == label_ring)
+    coords_target = coords[is_target]
+    is_center_target = is_center[is_target]
+
+    if center_coord is None:
+        center_coord = coords_target[is_center_target].mean(axis=0)
+
+    # --- Radial binning ---
+    dists = np.linalg.norm(coords_target - center_coord, axis=1)
+    n_bins = int(np.ceil(dists.max() / bin_size))
+    bins = np.arange(0, n_bins * bin_size + bin_size, bin_size)
+    bins = bins[bins <= dists.max() + bin_size]
+    n_bins = len(bins) - 1
+
+    frac_center = np.zeros(n_bins)
+    frac_ring = np.zeros(n_bins)
+    for i in range(n_bins):
+        in_bin = (dists >= bins[i]) & (dists < bins[i + 1])
+        n_in_bin = in_bin.sum()
+        if n_in_bin > 0:
+            frac_center[i] = is_center_target[in_bin].sum() / n_in_bin
+            frac_ring[i] = 1 - frac_center[i]
+
+    bin_idx = np.clip(np.digitize(dists, bins) - 1, 0, n_bins - 1)
+    contrast_cells = frac_ring[bin_idx] - frac_center[bin_idx]
+
+    # --- Contrast projection ---
+    s_bg, s_pt, s_x = (0.5, 2, 30)
+
+    ax.scatter(coords[:, 0], coords[:, 1], c='lightgrey', s=s_bg, alpha=0.5, rasterized=True)
+    sc = ax.scatter(coords_target[:, 0], coords_target[:, 1], c=contrast_cells,
+                    cmap=cmap, s=s_pt, vmin=-1, vmax=1, rasterized=True)
+    ax.scatter(*center_coord, c='black', s=s_x, marker='x', rasterized=True)
+
+    cbar = plt.colorbar(sc, ax=ax, shrink=0.5)
+    cbar.set_label('Shell - Core fraction', rotation=270, labelpad=15)
+
+    ax.set_aspect('equal')
+    ax.tick_params(axis='both', length=0)
+    ax.set_xticklabels('')
+    ax.set_yticklabels('')
+
+    return ax
