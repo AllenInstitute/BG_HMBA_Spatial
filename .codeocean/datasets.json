@@ -6,6 +6,10 @@
 			"mount": "human_BG_MERSCOPE_slab_transcripts"
 		},
 		{
+			"id": "06ede0fa-5473-477d-9956-ef13b9c44c3b",
+			"mount": "human_annotations"
+		},
+		{
 			"id": "0b80fc8f-40a5-4543-a3c2-306797262ae5",
 			"mount": "barcodes"
 		},
@@ -56,6 +60,10 @@
 		{
 			"id": "644a0baf-c2fd-4b04-a9f3-b7c9e91eb812",
 			"mount": "marmoset_BG_Xenium_slab_transcripts"
+		},
+		{
+			"id": "65e131ca-78aa-4c17-b60a-eca9bdd54be5",
+			"mount": "macaque_annotations"
 		},
 		{
 			"id": "75a7ad12-a610-4e86-8b11-c51b23cc4ba4",

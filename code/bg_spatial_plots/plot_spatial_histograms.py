@@ -356,3 +356,122 @@ def pad_histogram_to_physical_plot_size(H, binsize_um, plot_size_um, pad_value=n
 
     extent = [0, plot_size_um, 0, plot_size_um]
     return H_padded, extent
+
+def make_2D_hist_enrichment_log2(
+    adata,
+    obs_field,
+    category,
+    coords_obsm_key='spatial_grid',
+    binsize=300,
+    imshow_size=300*120,
+    global_propor_dict=None,
+    vlims=(-6,6),
+    cmap='PiYG_r',
+    no_cells_color="lightgrey", # light gray for bins with no cells
+    no_category_color="black", # light beige for bins with cells but no category
+    show_colorbar=True,
+    ax=None,
+):
+    """
+    Plot log2 enrichment of a specific category in a 2D spatial histogram.
+
+    Parameters
+    ----------
+    adata : AnnData
+        Annotated data matrix with spatial coordinates.
+    obs_field : str
+        Column in adata.obs to evaluate.
+    category : str
+        The category within obs_field to analyze.
+    coords_obsm_key : str
+        Key in adata.obsm for 2D spatial coordinates.
+    binsize : float
+        Size of bins in spatial units (e.g., microns).
+    vmin, vmax : float
+        Bounds for log2 enrichment color scale.
+    cmap : str
+        Colormap name for log2 enrichment.
+    no_cells_color : str
+        Color for bins with no cells at all.
+    no_category_color : str
+        Color for bins with cells but none in the target category.
+    show_colorbar : bool
+        Whether to show the colorbar.
+    ax : matplotlib axis
+        Optional axis to draw on.
+
+    Returns
+    -------
+    ax : matplotlib axis
+    """
+
+    # Calculate histograms
+    H_local_propor, xedges, yedges = calculate_2D_histogram(
+        adata, coords_obsm_key=coords_obsm_key, binsize=binsize,
+        obs_field=obs_field, category=category, normalization='proportion'
+    )
+
+    # Compute global proportion
+    if global_propor_dict is None:
+        H_all, _, _ = calculate_2D_histogram(
+            adata, coords_obsm_key=coords_obsm_key, binsize=binsize,
+            obs_field=obs_field, category=None, normalization=None,
+        )
+        total_cells = np.nansum(H_all)
+        category_cells = np.nansum(H_local_propor)
+        global_prop = category_cells / total_cells if total_cells > 0 else 0
+    else:
+        if category in global_propor_dict:
+            global_prop = global_propor_dict[category]
+        else:
+            raise ValueError(f"Category '{category}' not found in global_propor_dict.")
+
+    # Compute enrichment, letting -inf values stand but not throwing warnings
+    with np.errstate(divide='ignore', invalid='ignore'):
+        H_log2_enrichment = np.log2(H_local_propor / global_prop)
+    # set -inf to a large negative value such that .set_under() can handle it
+    H_log2_enrichment = np.where(np.isneginf(H_log2_enrichment), -1e10, H_log2_enrichment)
+
+    # Build custom colormap
+    custom_cmap = plt.get_cmap(cmap)
+    custom_cmap.set_bad(no_cells_color)  # Set color for bins with no cells
+    custom_cmap.set_under(no_category_color)  # Set color for bins with cells but none in this category (a "true zero")
+
+    # Normalize
+    norm = mcolors.Normalize(vmin=vlims[0], vmax=vlims[1], clip=False)
+
+    # Plot
+    if ax is None:
+        fig, ax = plt.subplots(figsize=(8, 6))
+
+    # Dynamically set the extent
+    if imshow_size is None:
+        imshow_extent = (xedges[0], xedges[-1], yedges[0], yedges[-1])
+        H_padded = H_log2_enrichment
+    else:
+        H_padded, imshow_extent = pad_histogram_to_physical_plot_size(H_log2_enrichment, binsize, imshow_size, pad_value=np.nan)
+
+    im = ax.imshow(
+        H_padded.T,  # transpose for orientation
+        origin='lower',
+        cmap=custom_cmap,
+        norm=norm,
+        extent=imshow_extent,
+    )
+
+    if show_colorbar:
+        cbar = plt.colorbar(im, ax=ax)
+        cbar.set_label("log2(enrichment)")
+        # cbar.set_ticks([vlims[0], -1, 0, 1, vlims[1]])
+
+        # Add legend patches
+        legend_patches = [
+            mpatches.Patch(color=no_cells_color, label='No spatial cells'),
+            mpatches.Patch(color=no_category_color, label=f'Zero {obs_field}=="{category}" cells', ),
+        ]
+        ax.legend(handles=legend_patches, loc='lower left', bbox_to_anchor=(0, 1.0))
+
+    ax.set_title(f"log2(enrichment): {obs_field}=={category}", pad=50)
+    ax.axis('off')
+
+    return ax
