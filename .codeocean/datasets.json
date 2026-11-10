@@ -2,24 +2,64 @@
 	"version": 1,
 	"attached_datasets": [
 		{
+			"id": "0b80fc8f-40a5-4543-a3c2-306797262ae5",
+			"mount": "barcodes"
+		},
+		{
 			"id": "269ac2ba-7a3b-47ee-acb8-e2ded4925689",
 			"mount": "mfishmerscopemacaqueatlas"
+		},
+		{
+			"id": "3112b906-7b6b-4eec-b181-51f90fa02df6",
+			"mount": "cirro_files_hmba_human_20260811"
 		},
 		{
 			"id": "31d7f9fc-fa2a-4cd8-9495-83865ff18111",
 			"mount": "mac_merscope_segmented_data"
 		},
 		{
+			"id": "37e8c558-ad95-427e-a732-e7e7f89b111f",
+			"mount": "HMBA-BG-annotation-lookup-20260528"
+		},
+		{
+			"id": "43c43bb5-29fd-4180-a6fa-f4e1a8f0bb1a",
+			"mount": "cirro_files_hmba_macaque_20260811"
+		},
+		{
+			"id": "5024fa77-4206-4156-9600-4d04b5e0f49b",
+			"mount": "human_bg_spatial_hemisphere_outlines"
+		},
+		{
+			"id": "505cbd22-cf8c-4391-b7c9-8c425bb4f76c",
+			"mount": "macaque_bg_spatial_hemisphere_outlines"
+		},
+		{
 			"id": "546d41a6-5a61-47e4-819d-061efd4e70d3",
 			"mount": "mac_merscope_barcodes"
+		},
+		{
+			"id": "5563b966-5c4f-44b8-811f-25175ba037bc",
+			"mount": "marmoset_hmba_bg_spatial_hemisphere_outlines"
 		},
 		{
 			"id": "5c4d72d8-c3e2-409f-9d18-bf9e1dad064d",
 			"mount": "for_mike"
 		},
 		{
+			"id": "75a7ad12-a610-4e86-8b11-c51b23cc4ba4",
+			"mount": "HMBA_BG_rnaseq_cell_counts"
+		},
+		{
+			"id": "814adfe9-f47e-4543-b8bd-e4e51c893645",
+			"mount": "marmoset_BG_manual_annotations_for_rotation"
+		},
+		{
 			"id": "9d4973d2-f71c-4f46-a2fc-c6046e388e45",
 			"mount": "mac_merscope_mapping_output"
+		},
+		{
+			"id": "c7dbfe0a-4ec0-4b50-a490-e42b95f26d96",
+			"mount": "cirro_files_hmba_marmoset_CJ23.56.004_BG_revisions_20260811"
 		},
 		{
 			"id": "db2a86ea-1734-41da-8000-35fbb557200a",
