@@ -2,6 +2,10 @@
 	"version": 1,
 	"attached_datasets": [
 		{
+			"id": "03b639f4-0700-423c-9fae-3c0be8940f33",
+			"mount": "human_BG_MERSCOPE_slab_transcripts"
+		},
+		{
 			"id": "0b80fc8f-40a5-4543-a3c2-306797262ae5",
 			"mount": "barcodes"
 		},
@@ -16,6 +20,10 @@
 		{
 			"id": "31d7f9fc-fa2a-4cd8-9495-83865ff18111",
 			"mount": "mac_merscope_segmented_data"
+		},
+		{
+			"id": "3470d7e7-4f69-4fa7-9cfe-c39405758c65",
+			"mount": "macaque_BG_MERSCOPE_slab_transcripts"
 		},
 		{
 			"id": "37e8c558-ad95-427e-a732-e7e7f89b111f",
@@ -44,6 +52,10 @@
 		{
 			"id": "5c4d72d8-c3e2-409f-9d18-bf9e1dad064d",
 			"mount": "for_mike"
+		},
+		{
+			"id": "644a0baf-c2fd-4b04-a9f3-b7c9e91eb812",
+			"mount": "marmoset_BG_Xenium_slab_transcripts"
 		},
 		{
 			"id": "75a7ad12-a610-4e86-8b11-c51b23cc4ba4",
