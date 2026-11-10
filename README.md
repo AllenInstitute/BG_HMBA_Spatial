@@ -41,7 +41,7 @@ Both modalities are annotated with the Mammalian Basal Ganglia Consensus Cell Ty
 Code is provided for transparency and reproducibility of the analyses described in the associated manuscript. Execution of some workflows may require access to large datasets and high-performance computing resources.
 
 ## Level of support
-We are not currently supporting this code, but simply releasing it to the community AS IS but are not able to provide any guarantees of support. The community is welcome to submit issues, but you should not expect an active response.
+We are not currently supporting this code, but simply releasing it to the community AS IS but are not able to provide any guarantees of support. The community is welcome to submit issues, but you should not expect an active response. We are not expecting to accept external contributions to this code.
 
 ## Contact
 For questions or issues related to this repository, please contact the corresponding authors listed in the publication.
