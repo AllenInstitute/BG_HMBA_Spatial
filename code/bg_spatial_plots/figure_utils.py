@@ -11,6 +11,7 @@ import numpy as np
 import shapely
 from shapely.plotting import plot_polygon
 from matplotlib import font_manager
+from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 def add_scalebar(
     ax, 
@@ -685,7 +686,6 @@ def plot_radial_proportions(prop_df, ax=None, legend=True, bbox_to_anchor=(1.1, 
     return ax
     
 def add_region_colormap(obs, groups, ax, width='100%', height='5%', pad=0):
-    from mpl_toolkits.axes_grid1.inset_locator import inset_axes
     group_obs = obs[obs['Group'].isin(groups)]
     regions = ['STR', 'GPe', 'GPi', 'SN', 'STH']
     group_obs = group_obs[group_obs['structure'].isin(regions)]
