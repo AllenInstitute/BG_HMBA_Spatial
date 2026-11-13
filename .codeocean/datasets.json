@@ -10,10 +10,6 @@
 			"mount": "human_annotations"
 		},
 		{
-			"id": "0b80fc8f-40a5-4543-a3c2-306797262ae5",
-			"mount": "barcodes"
-		},
-		{
 			"id": "269ac2ba-7a3b-47ee-acb8-e2ded4925689",
 			"mount": "mfishmerscopemacaqueatlas"
 		},
